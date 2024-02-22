@@ -18,11 +18,11 @@ function processText() {
 
         if (isEncoded) {
             const decodedText = decodeText(text);
-            console.log('Decrypted text: ', `${decodedText}`);
+            console.log('Decrypted text:', `${decodedText}`);
             writeToOutputFile(`${decodedText}\n`);
         } else {
             const encodedText = Buffer.from(text, 'utf8').toString('base64');
-            console.log('Encrypted text: ', `${encodedText}`);
+            console.log('Encrypted text:', `${encodedText}`);
             writeToOutputFile(`${encodedText}\n`);
         }
 
