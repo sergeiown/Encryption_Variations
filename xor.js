@@ -13,7 +13,7 @@ const encryptionKey = 12345;
 
 // Function for working with text
 function processText() {
-    rl.question('\nEnter the text:', (text) => {
+    rl.question('\nEnter the text: ', (text) => {
         writeToOutputFile(`\n`);
         writeToOutputFile(`${text}\n`);
 
@@ -21,11 +21,11 @@ function processText() {
 
         if (isEncoded) {
             const decodedText = decodeText(text, encryptionKey);
-            console.log('Decrypted text:', `${decodedText}`);
+            console.log('Decrypted text: ', `${decodedText}`);
             writeToOutputFile(`${decodedText}\n`);
         } else {
             const encodedText = encodeText(text, encryptionKey);
-            console.log('Encrypted text:', `${encodedText}`);
+            console.log('Encrypted text: ', `${encodedText}`);
             writeToOutputFile(`${encodedText}\n`);
         }
 
