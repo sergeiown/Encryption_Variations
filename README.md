@@ -12,8 +12,8 @@ This project implements console interfaces for encoding and decoding text using 
 4. Ability to save the results to a file.
 
 **Usage:**
-1. Run the script in the terminal.
-2. Enter the text to encode or decode.
+1. Run the script in the terminal or use the appropriate bat file if you are using a windows environment.
+2. Enter the text to encode and decode or use input.txt (for the *FromFile.js script).
 3. The results are displayed in the console, the session history is saved to the output.txt file.
 
 ## XOR Interface:
@@ -25,8 +25,8 @@ This project implements console interfaces for encoding and decoding text using 
 4. Ability to save the results to a file.
 
 **Usage:**
-1. Run the script in the terminal.
-2. Enter the text to encode or decode.
+1. Run the script in the terminal or use the appropriate bat file if you are using a windows environment..
+2. Enter the text to encode and decode or use input.txt (for the *FromFile.js script).
 3. The results are displayed in the console, the session history is saved to the output.txt file.
 
 ### Technical requirements:
