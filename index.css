@@ -4,18 +4,18 @@ body {
 }
 
 .container {
-    width: 95%; /* Ширина контейнера */
-    height: 95vh; /* Висота контейнера */
+    width: 95%;
+    height: 95vh;
     margin: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-bottom: 10px; /* Вертикальний відступ між .container і наступним елементом */
+    margin-bottom: 10px;
 }
 
 h1 {
-    margin-bottom: 5px; /* Зменшений вертикальний відступ між h1 та h3 */
+    margin-bottom: 5px;
 }
 
 h1,
@@ -24,41 +24,39 @@ h3 {
 }
 
 textarea {
-    width: 40%; /* Ширина текстових полів */
+    width: 40%;
     margin-bottom: 20px;
     box-sizing: border-box;
-    resize: none; /* Забороняємо зміну розміру textarea */
+    resize: none;
 }
 
 .options {
-    width: 40%; /* Ширина блоку опцій */
-    margin-bottom: 20px;
+    width: 40%;
     box-sizing: border-box;
 }
 
 select {
-    width: 100%; /* Ширина випадаючого списку */
-    height: 35px; /* Висота випадаючого списку */
+    width: 100%;
+    height: 35px;
 }
 
 option {
-    height: 40px; /* Збільшуємо висоту option переліку */
+    height: 40px;
 }
 
 @media screen and (orientation: portrait) {
     .container {
-        width: 95%; /* Змінюємо ширину контейнера при портретній орієнтації */
+        width: 95%;
     }
 
     textarea,
     .options {
-        width: 95%; /* Змінюємо ширину текстових полів і блоку опцій */
+        width: 95%;
     }
 }
 
-/* На iPhone додатково збільшимо висоту випадаючого списку */
 @media screen and (max-device-width: 480px) {
     select {
-        height: 40px; /* Збільшуємо висоту випадаючого списку */
+        height: 40px;
     }
 }
