@@ -16,6 +16,8 @@ This project implements console interfaces for encoding and decoding text using 
 2. Enter the text to encode and decode or use input.txt (for the *FromFile.js script).
 3. The results are displayed in the console, the session history is saved to the output.txt file.
 
+*A web version of the application is now also available: https://sergeiown.github.io/Encryption_Variations/*
+
 ## XOR Interface:
 
 **Functionality:**.
