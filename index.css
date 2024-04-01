@@ -1,26 +1,64 @@
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
+    font-family: Arial, sans-serif;
 }
 
 .container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
+    width: 95%; /* Ширина контейнера */
+    height: 95vh; /* Висота контейнера */
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px; /* Вертикальний відступ між .container і наступним елементом */
 }
 
-textarea,
-select {
-    display: block;
-    width: 100%;
-    margin-bottom: 10px;
+h1 {
+    margin-bottom: 5px; /* Зменшений вертикальний відступ між h1 та h3 */
+}
+
+h1,
+h3 {
+    text-align: center;
 }
 
 textarea {
-    resize: vertical;
+    width: 40%; /* Ширина текстових полів */
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    resize: none; /* Забороняємо зміну розміру textarea */
 }
 
-#output {
-    height: 200px;
+.options {
+    width: 40%; /* Ширина блоку опцій */
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+select {
+    width: 100%; /* Ширина випадаючого списку */
+    height: 35px; /* Висота випадаючого списку */
+}
+
+option {
+    height: 40px; /* Збільшуємо висоту option переліку */
+}
+
+@media screen and (orientation: portrait) {
+    .container {
+        width: 95%; /* Змінюємо ширину контейнера при портретній орієнтації */
+    }
+
+    textarea,
+    .options {
+        width: 95%; /* Змінюємо ширину текстових полів і блоку опцій */
+    }
+}
+
+/* На iPhone додатково збільшимо висоту випадаючого списку */
+@media screen and (max-device-width: 480px) {
+    select {
+        height: 40px; /* Збільшуємо висоту випадаючого списку */
+    }
 }
