@@ -33,6 +33,7 @@ textarea {
 .options {
     width: 40%;
     box-sizing: border-box;
+    margin-bottom: 20px;
 }
 
 select {
