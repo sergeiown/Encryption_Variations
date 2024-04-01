@@ -1,4 +1,4 @@
-# [Base64 and XOR Console Encryptors](https://github.com/sergeiown/Encryption_Variations/tree/main)
+# [Base64 and XOR Console Encryptors](https://sergeiown.github.io/Encryption_Variations/)
 
 ## Description.
 This project implements console interfaces for encoding and decoding text using different encryption methods: base64 and XOR. Each interface supports text input in Cyrillic and Latin and the ability to save the results to a text file.
