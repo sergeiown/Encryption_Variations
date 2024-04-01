@@ -11,8 +11,7 @@ body {
 }
 
 textarea,
-select,
-button {
+select {
     display: block;
     width: 100%;
     margin-bottom: 10px;
@@ -20,18 +19,6 @@ button {
 
 textarea {
     resize: vertical;
-}
-
-button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #0056b3;
 }
 
 #output {

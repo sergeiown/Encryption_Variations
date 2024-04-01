@@ -1,9 +1,8 @@
 const textInput = document.getElementById('textInput');
 const encryptionMethodSelect = document.getElementById('encryptionMethod');
-const processButton = document.getElementById('processButton');
 const outputTextarea = document.getElementById('output');
 
-processButton.addEventListener('click', () => {
+textInput.addEventListener('input', () => {
     const text = textInput.value.trim();
     const encryptionMethod = encryptionMethodSelect.value;
 
