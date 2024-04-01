@@ -45,13 +45,13 @@ function isBase64(str) {
 }
 
 function decodeBase64(encodedText) {
-    return decodeURIComponent(
-        Array.prototype.map
-            .call(atob(encodedText), (c) => {
-                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-            })
-            .join('')
-    );
+    const binaryString = atob(encodedText.replace(/-/g, '+').replace(/_/g, '/'));
+    const bytes = new Uint8Array(binaryString.length);
+    for (let i = 0; i < binaryString.length; i++) {
+        bytes[i] = binaryString.charCodeAt(i);
+    }
+    const decoder = new TextDecoder('utf-8');
+    return decoder.decode(bytes);
 }
 
 function isXOREncoded(str) {
