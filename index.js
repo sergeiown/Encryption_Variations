@@ -1,3 +1,6 @@
+/* The script implements encoding and decoding text using the XOR or Base64 method. The script supports input of Cyrillic languages. */
+/* Copyright (c) 2024 Serhii I. Myshko](https://github.com/sergeiown/Encryption_Variations/blob/main/LICENSE */
+
 const textInput = document.getElementById('textInput');
 const encryptionMethodSelect = document.getElementById('encryptionMethod');
 const outputTextarea = document.getElementById('output');
