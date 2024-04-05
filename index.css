@@ -65,3 +65,8 @@ option {
         height: 40px;
     }
 }
+
+.noscript-message {
+    text-align: center;
+    padding: 20px;
+}
