@@ -43,6 +43,7 @@ body {
             color: $font-color-alt;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
             box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
@@ -58,6 +59,7 @@ body {
                 color: $font-color;
                 text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
                 border: 1px solid rgba(0, 0, 0, 0.1);
+                border-radius: 5px;
                 box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
             }
 
