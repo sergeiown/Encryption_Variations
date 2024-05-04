@@ -6,7 +6,13 @@ const encryptionMethodSelect = document.getElementById('encryptionMethod');
 const outputTextarea = document.getElementById('output');
 
 window.addEventListener('load', () => {
-    const storedText = getCookie('storedText');
+    const storedText = getFromLocalStorage('storedText');
+    const storedMethod = getFromLocalStorage('encryptionMethod');
+
+    if (storedMethod) {
+        encryptionMethodSelect.value = storedMethod;
+    }
+
     if (storedText) {
         textInput.value = storedText;
         processText();
@@ -21,10 +27,12 @@ encryptionMethodSelect.addEventListener('change', () => {
     processText();
 });
 
+// General text processing function
 function processText() {
     const text = textInput.value.trim();
     const encryptionMethod = encryptionMethodSelect.value;
-    saveCookie('storedText', text);
+    saveToLocalStorage('storedText', text);
+    saveToLocalStorage('encryptionMethod', encryptionMethod);
 
     if (encryptionMethod === 'base64') {
         processTextBase64(text);
@@ -33,6 +41,7 @@ function processText() {
     }
 }
 
+// The function of text processing using the Base64 method
 function processTextBase64(text) {
     const isEncoded = isBase64(text);
     if (isEncoded) {
@@ -44,6 +53,7 @@ function processTextBase64(text) {
     }
 }
 
+// Text processing function using the XOR method
 function processTextXOR(text) {
     const isEncoded = isXOREncoded(text);
     const encryptionKey = 12345;
@@ -56,6 +66,7 @@ function processTextXOR(text) {
     }
 }
 
+// Check if the text is encoded using the Base64 method
 function isBase64(str) {
     try {
         return btoa(atob(str)) === str;
@@ -64,6 +75,7 @@ function isBase64(str) {
     }
 }
 
+// Decoding text using the Base64 method
 function decodeBase64(encodedText) {
     const binaryString = atob(encodedText.replace(/-/g, '+').replace(/_/g, '/'));
     const bytes = new Uint8Array(binaryString.length);
@@ -74,10 +86,12 @@ function decodeBase64(encodedText) {
     return decoder.decode(bytes);
 }
 
+// Check if the text is encoded using the XOR method
 function isXOREncoded(str) {
     return /^[0-9a-fA-F]{4,}$/i.test(str);
 }
 
+// Decoding text using the XOR method
 function decodeXOR(encodedText, key) {
     let decodedText = '';
     for (let i = 0; i < encodedText.length; i += 4) {
@@ -88,6 +102,7 @@ function decodeXOR(encodedText, key) {
     return decodedText;
 }
 
+// Encoding text using the XOR method
 function encodeXOR(text, key) {
     let encodedText = '';
     for (let i = 0; i < text.length; i++) {
@@ -98,6 +113,7 @@ function encodeXOR(text, key) {
     return encodedText;
 }
 
+// Encoding text using the Base64 method
 function base64EncodeUnicode(str) {
     return btoa(
         encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (match, p1) => {
@@ -106,25 +122,12 @@ function base64EncodeUnicode(str) {
     );
 }
 
-function saveCookie(name, value, days = 365) {
-    const date = new Date();
-    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-    const expires = 'expires=' + date.toUTCString();
-    document.cookie = name + '=' + value + ';' + expires + ';path=/';
+// Storing values in local storage
+function saveToLocalStorage(name, value) {
+    localStorage.setItem(name, value);
 }
 
-function getCookie(name) {
-    const cookieName = name + '=';
-    const decodedCookie = decodeURIComponent(document.cookie);
-    const cookieArray = decodedCookie.split(';');
-    for (let i = 0; i < cookieArray.length; i++) {
-        let cookie = cookieArray[i];
-        while (cookie.charAt(0) === ' ') {
-            cookie = cookie.substring(1);
-        }
-        if (cookie.indexOf(cookieName) === 0) {
-            return cookie.substring(cookieName.length, cookie.length);
-        }
-    }
-    return '';
+// Getting a value from local storage
+function getFromLocalStorage(name) {
+    return localStorage.getItem(name) || '';
 }
