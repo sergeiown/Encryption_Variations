@@ -53,7 +53,7 @@ body {
         }
 
         .options {
-            width: 40%;
+            width: 30%;
             box-sizing: border-box;
             margin-bottom: 20px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
@@ -89,11 +89,33 @@ body {
             }
         }
 
+        .buttons {
+            @include center;
+            gap: 35px;
+            width: 30%;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+
+            button {
+                font-size: 14px;
+                color: $font-color;
+                text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+                background-color: rgba(255, 255, 255, 0.4);
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+                border: 1px solid rgba(0, 0, 0, 0.1);
+                border-radius: 5px;
+                height: 35px;
+                flex: 1;
+                cursor: pointer;
+            }
+        }
+
         @media screen and (orientation: portrait) {
             width: 95%;
 
             textarea,
-            .options {
+            .options,
+            .buttons {
                 width: 95%;
             }
         }

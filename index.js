@@ -4,6 +4,8 @@
 const textInput = document.getElementById('textInput');
 const encryptionMethodSelect = document.getElementById('encryptionMethod');
 const outputTextarea = document.getElementById('output');
+const clearButton = document.getElementById('clearButton');
+const copyButton = document.getElementById('copyButton');
 
 window.addEventListener('load', () => {
     const storedText = getFromLocalStorage('storedText');
@@ -25,6 +27,17 @@ textInput.addEventListener('input', () => {
 
 encryptionMethodSelect.addEventListener('change', () => {
     processText();
+});
+
+clearButton.addEventListener('click', () => {
+    textInput.value = '';
+    outputTextarea.value = '';
+    localStorage.removeItem('storedText');
+    console.log('Result cleared');
+});
+
+copyButton.addEventListener('click', () => {
+    copyToClipboard(outputTextarea.value);
 });
 
 // General text processing function
@@ -130,4 +143,45 @@ function saveToLocalStorage(name, value) {
 // Getting a value from local storage
 function getFromLocalStorage(name) {
     return localStorage.getItem(name) || '';
+}
+
+// Copy text to clipboard
+function copyToClipboard(text) {
+    if (!navigator.clipboard) {
+        // Clipboard API не поддерживается
+        fallbackCopyTextToClipboard(text);
+        return;
+    }
+
+    navigator.clipboard
+        .writeText(text)
+        .then(() => {
+            console.log('Text copied to clipboard');
+        })
+        .catch((err) => {
+            console.error('Failed to copy text to clipboard', err);
+        });
+}
+
+// Copy text to clipboard on unsupported browsers
+function fallbackCopyTextToClipboard(text) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-9999px';
+
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+
+    try {
+        const successful = document.execCommand('copy');
+        const msg = successful ? 'successful' : 'unsuccessful';
+        console.log('Copying text command was ' + msg);
+    } catch (err) {
+        console.error('Failed to copy text to clipboard', err);
+    }
+
+    document.body.removeChild(textArea);
 }
