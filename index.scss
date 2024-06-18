@@ -107,6 +107,15 @@ body {
                 height: 35px;
                 flex: 1;
                 cursor: pointer;
+                transition: box-shadow 0.2s;
+
+                &:hover {
+                    box-shadow: 0 0 13px rgba(0, 0, 0, 0.4);
+                }
+
+                &:active {
+                    box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+                }
             }
         }
 
