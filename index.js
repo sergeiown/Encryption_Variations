@@ -82,7 +82,16 @@ function processTextXOR(text) {
 // Check if the text is encoded using the Base64 method
 function isBase64(str) {
     try {
-        return btoa(atob(str)) === str;
+        if (btoa(atob(str)) !== str) {
+            return false;
+        }
+
+        // Check if the string contains invalid characters
+        if (/[\u0000-\u001f\u007f-\uffff]/.test(atob(str))) {
+            return false;
+        }
+
+        return true;
     } catch (error) {
         return false;
     }
@@ -148,7 +157,6 @@ function getFromLocalStorage(name) {
 // Copy text to clipboard
 function copyToClipboard(text) {
     if (!navigator.clipboard) {
-        // Clipboard API не поддерживается
         fallbackCopyTextToClipboard(text);
         return;
     }

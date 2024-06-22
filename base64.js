@@ -38,7 +38,10 @@ function decodeText(encodedText) {
 // Checks if the text is valid base64
 function isBase64(str) {
     try {
-        return Buffer.from(str, 'base64').toString('base64') === str;
+        return (
+            Buffer.from(str, 'base64').toString('base64') === str &&
+            !/[\u0000-\u001f\u007f-\uffff]/.test(Buffer.from(str, 'base64').toString('binary'))
+        );
     } catch (error) {
         return false;
     }
