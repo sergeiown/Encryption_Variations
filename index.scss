@@ -5,8 +5,35 @@ $font-color-alt: #184a7f;
 
 @mixin center {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+@mixin space {
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@mixin boxShadowInteractions(
+    $hover-shadow: 0 0 13px rgba(0, 0, 0, 0.4),
+    $active-shadow: 0 0 8px rgba(0, 0, 0, 0.4),
+    $focus-shadow: 0 0 8px rgba(0, 0, 0, 0.4)
+) {
+    &:hover {
+        box-shadow: $hover-shadow;
+    }
+
+    &:active {
+        box-shadow: $active-shadow;
+    }
+
+    &:focus {
+        box-shadow: $focus-shadow;
+        outline: none;
+    }
 }
 
 body {
@@ -19,12 +46,10 @@ body {
     height: 100vh;
 
     .container {
-        width: 95%;
+        @include center;
+        width: 90%;
         height: 95vh;
         margin: auto;
-        @include center;
-        flex-direction: column;
-        margin-bottom: 10px;
         color: $font-color;
         text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
 
@@ -38,8 +63,8 @@ body {
         }
 
         textarea {
-            width: 40%;
-            margin-bottom: 20px;
+            width: 45%;
+            margin: 15px 0 15px 0;
             box-sizing: border-box;
             resize: none;
             font-size: $font-size;
@@ -50,82 +75,64 @@ body {
             border-radius: 5px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
             background-color: rgba(255, 255, 255, 0.4);
+
+            @include boxShadowInteractions;
+
+            @media screen and (orientation: portrait) {
+                width: 100%;
+            }
         }
 
-        .options {
-            width: 30%;
-            box-sizing: border-box;
-            margin-bottom: 20px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-            outline: none;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
+        .controls {
+            width: 100%;
 
-            select {
-                width: 100%;
-                height: 35px;
-                font-size: 14px;
-                color: $font-color;
-                text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
-                background-color: rgba(255, 255, 255, 0.4);
-                outline: none;
-                border: 1px solid rgba(0, 0, 0, 0.1);
-                border-radius: 5px;
-                cursor: pointer;
+            @include space();
+
+            @media screen and (orientation: portrait) {
+                width: 90%;
             }
 
-            option {
-                height: 40px;
-                font-size: 14px;
-                line-height: 1.6;
-                color: $font-color;
-                text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
-            }
+            .options {
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+                border-radius: 50%;
 
-            @media screen and (max-device-width: 480px) {
                 select {
-                    height: 40px;
+                    width: 80px;
+                    height: 80px;
+                    font-size: 14px;
+                    color: $font-color;
+                    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+                    background-color: rgba(255, 255, 255, 0.4);
+                    outline: none;
+                    border: 1px solid rgba(0, 0, 0, 0.1);
+                    border-radius: 50%;
+                    cursor: pointer;
+
+                    @include boxShadowInteractions;
+                }
+
+                option {
+                    font-size: 14px;
+                    color: $font-color;
+                    background-color: rgba(255, 255, 255, 0.4);
+                    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
                 }
             }
-        }
-
-        .buttons {
-            @include center;
-            gap: 35px;
-            width: 30%;
-            box-sizing: border-box;
-            margin-bottom: 20px;
 
             button {
+                width: 80px;
+                height: 80px;
                 font-size: 14px;
                 color: $font-color;
                 text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
                 background-color: rgba(255, 255, 255, 0.4);
                 box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
                 border: 1px solid rgba(0, 0, 0, 0.1);
-                border-radius: 5px;
-                height: 35px;
-                flex: 1;
+                border-radius: 50%;
                 cursor: pointer;
                 transition: box-shadow 0.2s;
 
-                &:hover {
-                    box-shadow: 0 0 13px rgba(0, 0, 0, 0.4);
-                }
-
-                &:active {
-                    box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
-                }
-            }
-        }
-
-        @media screen and (orientation: portrait) {
-            width: 95%;
-
-            textarea,
-            .options,
-            .buttons {
-                width: 95%;
+                @include boxShadowInteractions;
             }
         }
     }

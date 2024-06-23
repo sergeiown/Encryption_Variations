@@ -31,13 +31,16 @@
             <h1>Encryption / Decryption</h1>
             <h3>Cyrillic and Latin characters are supported</h3>
             <textarea id="textInput" placeholder="Enter the text..." rows="8"></textarea>
-            <div class="options">
-                <select id="encryptionMethod">
-                    <option value="xor">XOR</option>
-                    <option value="base64">Base64</option>
-                </select>
+            <div class="controls">
+                <button id="clearButton">Clear</button>
+                <div class="options">
+                    <select id="encryptionMethod">
+                        <option value="xor">XOR</option>
+                        <option value="base64">Base64</option>
+                    </select>
+                </div>
+                <button id="copyButton">Copy</button>
             </div>
-            <div class="buttons"><button id="clearButton">Clear</button><button id="copyButton">Copy</button></div>
             <textarea id="output" placeholder="Result..." rows="8" readonly></textarea>
         </div>
 
