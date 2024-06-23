@@ -5,7 +5,7 @@ This project implements console interfaces for encoding and decoding text using 
 
 | console interface | web interface |
 | --- | --- |
-| ![image](https://github.com/sergeiown/Encryption_Variations/assets/112722061/cd92bc87-02c5-4529-904a-7e98ae437eda) | ![image](https://github.com/sergeiown/Encryption_Variations/assets/112722061/9eba622c-d920-488a-826b-054bfe140ab4) |
+| ![image](https://github.com/sergeiown/Encryption_Variations/assets/112722061/cd92bc87-02c5-4529-904a-7e98ae437eda) | ![image](https://github.com/sergeiown/Encryption_Variations/assets/112722061/e61be477-cc8e-44f2-916e-fdf18768e4c6) |
 
 ## Base64 Interface:
 
