@@ -11,7 +11,6 @@ $font-color-alt: #184a7f;
 }
 
 @mixin space {
-    width: 40%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -47,7 +46,7 @@ body {
 
     .container {
         @include center;
-        width: 90%;
+        width: 100vw;
         height: 95vh;
         margin: auto;
         color: $font-color;
@@ -63,7 +62,7 @@ body {
         }
 
         textarea {
-            width: 45%;
+            width: 35vw;
             margin: 15px 0 15px 0;
             box-sizing: border-box;
             resize: none;
@@ -79,17 +78,17 @@ body {
             @include boxShadowInteractions;
 
             @media screen and (orientation: portrait) {
-                width: 100%;
+                width: 90vw;
             }
         }
 
         .controls {
-            width: 100%;
-
             @include space();
 
+            width: 30vw;
+
             @media screen and (orientation: portrait) {
-                width: 90%;
+                width: 80vw;
             }
 
             .options {
