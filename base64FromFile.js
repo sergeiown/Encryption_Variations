@@ -37,7 +37,21 @@ function decodeText(encodedText) {
 // Checks if the text is valid base64
 function isBase64(str) {
     try {
-        return Buffer.from(str, 'base64').toString('utf8') !== '';
+        const base64Pattern = /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/;
+        if (!base64Pattern.test(str)) {
+            return false;
+        }
+
+        const decodedBuffer = Buffer.from(str, 'base64');
+
+        const reEncodedBase64 = decodedBuffer.toString('base64');
+        if (reEncodedBase64 !== str) {
+            return false;
+        }
+
+        const utf8String = decodedBuffer.toString('utf8');
+        const utf8Bytes = Buffer.from(utf8String, 'utf8');
+        return utf8Bytes.equals(decodedBuffer);
     } catch (error) {
         return false;
     }

@@ -40,16 +40,26 @@ function processTextXOR(text, outputTextarea) {
 }
 
 function isBase64(str) {
+    // Regular expression to check the Base64 format
+    const base64Pattern = /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/;
+    if (!base64Pattern.test(str)) {
+        return false;
+    }
+
     try {
-        if (btoa(atob(str)) !== str) {
-            return false;
-        }
+        // Decoding Base64 to Uint8Array
+        const binaryString = atob(str);
+        const byteArray = Uint8Array.from(binaryString, (char) => char.charCodeAt(0));
 
-        if (/[\u001f\u007f-\uffff]/.test(atob(str))) {
-            return false;
-        }
+        // Decoding Uint8Array to UTF-8
+        const decodedString = new TextDecoder('utf-8').decode(byteArray);
 
-        return true;
+        // UTF-8 encoding in Uint8Array
+        const encodedBytes = new TextEncoder().encode(decodedString);
+        const encodedBase64 = btoa(String.fromCharCode(...encodedBytes));
+
+        // Check whether the newly encoded text matches the original
+        return encodedBase64 === str;
     } catch (error) {
         return false;
     }
