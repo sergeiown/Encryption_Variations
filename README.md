@@ -5,7 +5,7 @@ This project implements console interfaces for encoding and decoding text using 
 
 | console interface | web interface |
 | --- | --- |
-| ![image](https://github.com/sergeiown/Encryption_Variations/assets/112722061/cd92bc87-02c5-4529-904a-7e98ae437eda) | ![image](https://github.com/sergeiown/Encryption_Variations/assets/112722061/e61be477-cc8e-44f2-916e-fdf18768e4c6) |
+| ![image](https://github.com/sergeiown/Encryption_Variations/assets/112722061/bf21c845-282f-4ce3-b99b-84c4556cf344) | ![image](https://github.com/sergeiown/Encryption_Variations/assets/112722061/e61be477-cc8e-44f2-916e-fdf18768e4c6) |
 
 ## Base64 Interface:
 
@@ -15,13 +15,6 @@ This project implements console interfaces for encoding and decoding text using 
 3. Checking for the correctness of the base64 code.
 4. Ability to save the results to a file.
 
-**Usage:**
-1. Run the script in the terminal or use the appropriate bat file if you are using a windows environment.
-2. Enter the text to encode and decode or use input.txt (for the *FromFile.js script).
-3. The results are displayed in the console, the session history is saved to the output.txt file.
-
-***A web version of the application is now also available: https://sergeiown.github.io/Encryption_Variations/***
-
 ## XOR Interface:
 
 **Functionality:**.
@@ -30,10 +23,12 @@ This project implements console interfaces for encoding and decoding text using 
 3. Checking the correctness of the text encrypted by the XOR method.
 4. Ability to save the results to a file.
 
-**Usage:**
-1. Run the script in the terminal or use the appropriate bat file if you are using a windows environment..
-2. Enter the text to encode and decode or use input.txt (for the *FromFile.js script).
+## Usage:
+1. Run the corresponding script in the terminal or use the `start.bat` bat file if you are using the Windows environment.
+2. Enter the text to encode and decode or use input.txt
 3. The results are displayed in the console, the session history is saved to the output.txt file.
+
+***A web version of the application is now also available: https://sergeiown.github.io/Encryption_Variations/***
 
 ### Technical requirements:
 1. Availability of Node.js.
