@@ -29,7 +29,7 @@ function processTextBase64(text, outputTextarea) {
 
 function processTextXOR(text, outputTextarea) {
     const isEncoded = isXOREncoded(text);
-    const encryptionKey = 12345;
+    const encryptionKey = 12345; // The key value is limited to Unicode (UTF-16) where each character is encoded with 16 bits which allows to use codes from 0 to 65535
     if (isEncoded) {
         const decodedText = decodeXOR(text, encryptionKey);
         outputTextarea.value = decodedText;
