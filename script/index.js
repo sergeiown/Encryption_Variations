@@ -209,16 +209,6 @@ function showTemporaryMessage(messageText) {
 
     const message = document.createElement('div');
     message.textContent = messageText;
-    message.style.position = 'fixed';
-    message.style.top = '10px';
-    message.style.right = '10px';
-    message.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
-    message.style.color = 'white';
-    message.style.padding = '10px';
-    message.style.borderRadius = '5px';
-    message.style.zIndex = '1000';
-    message.style.transition = 'opacity 1.5s';
-    message.style.opacity = '1';
     message.id = 'temporaryMessage';
 
     document.body.appendChild(message);
