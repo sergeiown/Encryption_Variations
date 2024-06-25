@@ -26,14 +26,18 @@ textInput.addEventListener('input', () => {
 });
 
 encryptionMethodSelect.addEventListener('change', () => {
+    showTemporaryMessage('Encryption method is selected: ' + encryptionMethodSelect.value);
     processText();
 });
 
 clearButton.addEventListener('click', () => {
+    const msg = !textInput.value ? 'There is no text to clear' : 'Result cleared';
+
     textInput.value = '';
     outputTextarea.value = '';
     localStorage.removeItem('storedText');
-    console.log('Result cleared');
+
+    showTemporaryMessage(msg);
 });
 
 copyButton.addEventListener('click', () => {
@@ -164,10 +168,11 @@ function copyToClipboard(text) {
     navigator.clipboard
         .writeText(text)
         .then(() => {
-            console.log('Text copied to clipboard');
+            const msg = text ? 'Result copied' : 'There is no text to copy';
+            showTemporaryMessage(msg);
         })
         .catch((err) => {
-            console.error('Failed to copy text to clipboard', err);
+            console.error('Failed to copy the result to clipboard', err);
         });
 }
 
@@ -185,11 +190,46 @@ function fallbackCopyTextToClipboard(text) {
 
     try {
         const successful = document.execCommand('copy');
-        const msg = successful ? 'successful' : 'unsuccessful';
-        console.log('Copying text command was ' + msg);
+        const msg = successful ? 'Result copied' : 'There is no text to copy';
+        showTemporaryMessage(msg);
     } catch (err) {
-        console.error('Failed to copy text to clipboard', err);
+        console.error('Failed to copy the result to clipboard', err);
     }
 
     document.body.removeChild(textArea);
+}
+
+// Show a temporary message to the user
+function showTemporaryMessage(messageText) {
+    const existingMessage = document.getElementById('temporaryMessage');
+
+    if (existingMessage) {
+        existingMessage.remove();
+    }
+
+    const message = document.createElement('div');
+    message.textContent = messageText;
+    message.style.position = 'fixed';
+    message.style.top = '10px';
+    message.style.right = '10px';
+    message.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
+    message.style.color = 'white';
+    message.style.padding = '10px';
+    message.style.borderRadius = '5px';
+    message.style.zIndex = '1000';
+    message.style.transition = 'opacity 1.5s';
+    message.style.opacity = '1';
+    message.id = 'temporaryMessage';
+
+    document.body.appendChild(message);
+
+    setTimeout(() => {
+        message.style.opacity = '0';
+    }, 1500);
+
+    setTimeout(() => {
+        message.remove();
+    }, 3000);
+
+    console.log(messageText);
 }
