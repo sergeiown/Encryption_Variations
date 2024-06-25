@@ -45,7 +45,7 @@ function isBase64(str) {
             return false;
         }
 
-        if (/[\u0000-\u001f\u007f-\uffff]/.test(atob(str))) {
+        if (/[\u001f\u007f-\uffff]/.test(atob(str))) {
             return false;
         }
 
