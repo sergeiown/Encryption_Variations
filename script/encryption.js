@@ -9,11 +9,12 @@ export function processText(textInput, encryptionMethodSelect, outputTextarea) {
     saveToLocalStorage('storedText', text);
     saveToLocalStorage('encryptionMethod', encryptionMethod);
 
-    if (encryptionMethod === 'base64') {
-        processTextBase64(text, outputTextarea);
-    } else if (encryptionMethod === 'xor') {
-        processTextXOR(text, outputTextarea);
-    }
+    const encryptionMethods = {
+        base64: processTextBase64,
+        xor: processTextXOR,
+    };
+
+    encryptionMethods[encryptionMethod]?.(text, outputTextarea);
 }
 
 function processTextBase64(text, outputTextarea) {
