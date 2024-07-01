@@ -19,25 +19,14 @@ export function processText(textInput, encryptionMethodSelect, outputTextarea) {
 
 function processTextBase64(text, outputTextarea) {
     const isEncoded = isBase64(text);
-    if (isEncoded) {
-        const decodedText = decodeBase64(text);
-        outputTextarea.value = decodedText;
-    } else {
-        const encodedText = base64EncodeUnicode(text);
-        outputTextarea.value = encodedText;
-    }
+    outputTextarea.value = isEncoded ? decodeBase64(text) : base64EncodeUnicode(text);
 }
 
 function processTextXOR(text, outputTextarea) {
     const isEncoded = isXOREncoded(text);
     const encryptionKey = 12345; // The key value is limited to Unicode (UTF-16) where each character is encoded with 16 bits which allows to use codes from 0 to 65535
-    if (isEncoded) {
-        const decodedText = decodeXOR(text, encryptionKey);
-        outputTextarea.value = decodedText;
-    } else {
-        const encodedText = encodeXOR(text, encryptionKey);
-        outputTextarea.value = encodedText;
-    }
+
+    outputTextarea.value = isEncoded ? decodeXOR(text, encryptionKey) : encodeXOR(text, encryptionKey);
 }
 
 function isBase64(str) {
