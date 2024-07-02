@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const readline = require('readline');
+const os = require('os');
 
 const rl = readline.createInterface({
     input: fs.createReadStream('input.txt'),
@@ -16,11 +17,11 @@ function processText() {
         if (isEncoded) {
             const decodedText = decodeText(text);
             console.log('Decrypted text:', `${decodedText}`);
-            writeToOutputFile(`${decodedText}\n`);
+            writeToOutputFile(`${decodedText}${os.EOL}`);
         } else {
             const encodedText = Buffer.from(text, 'utf8').toString('base64');
             console.log('Encrypted text:', `${encodedText}`);
-            writeToOutputFile(`${encodedText}\n`);
+            writeToOutputFile(`${encodedText}${os.EOL}`);
         }
     });
 

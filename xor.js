@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const readline = require('readline');
+const os = require('os');
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -13,20 +14,20 @@ const encryptionKey = 12345;
 
 // Function for working with text
 function processText() {
-    rl.question('\nEnter the text: ', (text) => {
-        writeToOutputFile(`\n`);
-        writeToOutputFile(`${text}\n`);
+    rl.question(`${os.EOL}Enter the text: `, (text) => {
+        writeToOutputFile(`${os.EOL}`);
+        writeToOutputFile(`${text}${os.EOL}`);
 
         const isEncoded = isXOREncoded(text);
 
         if (isEncoded) {
             const decodedText = decodeText(text, encryptionKey);
             console.log('Decrypted text:', `${decodedText}`);
-            writeToOutputFile(`${decodedText}\n`);
+            writeToOutputFile(`${decodedText}${os.EOL}`);
         } else {
             const encodedText = encodeText(text, encryptionKey);
             console.log('Encrypted text:', `${encodedText}`);
-            writeToOutputFile(`${encodedText}\n`);
+            writeToOutputFile(`${encodedText}${os.EOL}`);
         }
 
         processText();
