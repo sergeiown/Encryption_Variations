@@ -12,17 +12,10 @@ const rl = readline.createInterface({
 // Function for decoding base64 and encoding to base64 text
 function processText() {
     rl.on('line', (text) => {
-        const isEncoded = isBase64(text);
+        const result = isBase64(text) ? decodeText(text) : Buffer.from(text, 'utf8').toString('base64');
 
-        if (isEncoded) {
-            const decodedText = decodeText(text);
-            console.log('Decrypted text:', `${decodedText}`);
-            writeToOutputFile(`${decodedText}${os.EOL}`);
-        } else {
-            const encodedText = Buffer.from(text, 'utf8').toString('base64');
-            console.log('Encrypted text:', `${encodedText}`);
-            writeToOutputFile(`${encodedText}${os.EOL}`);
-        }
+        console.log(isBase64(text) ? 'Decrypted text:' : 'Encrypted text:', `${result}`);
+        writeToOutputFile(`${result}${os.EOL}`);
     });
 
     rl.on('close', () => {

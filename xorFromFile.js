@@ -16,16 +16,10 @@ const encryptionKey = 12345;
 function processText() {
     rl.on('line', (text) => {
         const isEncoded = isXOREncoded(text);
+        const result = isEncoded ? decodeText(text, encryptionKey) : encodeText(text, encryptionKey);
 
-        if (isEncoded) {
-            const decodedText = decodeText(text, encryptionKey);
-            console.log('Decrypted text:', `${decodedText}`);
-            writeToOutputFile(`${decodedText}${os.EOL}`);
-        } else {
-            const encodedText = encodeText(text, encryptionKey);
-            console.log('Encrypted text:', `${encodedText}`);
-            writeToOutputFile(`${encodedText}${os.EOL}`);
-        }
+        console.log(isEncoded ? 'Decrypted text:' : 'Encrypted text:', result);
+        writeToOutputFile(`${result}${os.EOL}`);
     });
 
     rl.on('close', () => {
