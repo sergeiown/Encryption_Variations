@@ -21,6 +21,8 @@ $font-color-alt: #184a7f;
     $active-shadow: 0 0 8px rgba(0, 0, 0, 0.4),
     $focus-shadow: 0 0 8px rgba(0, 0, 0, 0.4)
 ) {
+    transition: box-shadow 0.2s;
+
     &:hover {
         box-shadow: $hover-shadow;
     }
@@ -94,7 +96,6 @@ body {
             .options {
                 box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
                 border-radius: 50%;
-                transition: box-shadow 0.2s;
 
                 @include boxShadowInteractions;
 
@@ -130,7 +131,6 @@ body {
                 border: 1px solid rgba(0, 0, 0, 0.1);
                 border-radius: 50%;
                 cursor: pointer;
-                transition: box-shadow 0.2s;
 
                 @include boxShadowInteractions;
             }
