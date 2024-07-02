@@ -29,6 +29,7 @@ function processTextXOR(text, outputTextarea) {
     outputTextarea.value = isEncoded ? decodeXOR(text, encryptionKey) : encodeXOR(text, encryptionKey);
 }
 
+/* The reason for creating functions with different approaches was the difference between client-side JavaScript and Node.js which lies in the specific capabilities and limitations of both environments. The browser function uses atob and btoa to work with Base64 but additionally uses TextEncoder and TextDecoder to process UTF-8 characters including Cyrillic. The function for Node.js uses Buffer to work with Base64 which already supports UTF-8 encoding and is more flexible for working with different character sets including Cyrillic. */
 function isBase64(str) {
     // Regular expression to check the Base64 format
     const base64Pattern = /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/;
