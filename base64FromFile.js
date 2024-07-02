@@ -14,12 +14,12 @@ function processText() {
     rl.on('line', (text) => {
         const result = isBase64(text) ? decodeText(text) : Buffer.from(text, 'utf8').toString('base64');
 
-        console.log(isBase64(text) ? 'Decrypted text:' : 'Encrypted text:', `${result}`);
-        writeToOutputFile(`${result}${os.EOL}`);
+        console.log(isBase64(text) ? `${os.EOL}Decrypted text:${os.EOL}` : `${os.EOL}Encrypted text:${os.EOL}`, result);
+        writeToOutputFile(result);
     });
 
     rl.on('close', () => {
-        console.log('File processing complete.');
+        console.log(`${os.EOL}File processing complete.`);
     });
 }
 

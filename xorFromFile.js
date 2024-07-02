@@ -18,8 +18,8 @@ function processText() {
         const isEncoded = isXOREncoded(text);
         const result = isEncoded ? decodeText(text, encryptionKey) : encodeText(text, encryptionKey);
 
-        console.log(isEncoded ? 'Decrypted text:' : 'Encrypted text:', result);
-        writeToOutputFile(`${result}${os.EOL}`);
+        console.log(result);
+        writeToOutputFile(result);
     });
 
     rl.on('close', () => {
