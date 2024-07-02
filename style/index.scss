@@ -94,6 +94,9 @@ body {
             .options {
                 box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
                 border-radius: 50%;
+                transition: box-shadow 0.2s;
+
+                @include boxShadowInteractions;
 
                 select {
                     width: 80px;
@@ -106,8 +109,6 @@ body {
                     border: 1px solid rgba(0, 0, 0, 0.1);
                     border-radius: 50%;
                     cursor: pointer;
-
-                    @include boxShadowInteractions;
                 }
 
                 option {
