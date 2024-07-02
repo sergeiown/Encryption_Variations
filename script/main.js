@@ -13,17 +13,13 @@ const clearButton = document.getElementById('clearButton');
 const copyButton = document.getElementById('copyButton');
 
 window.addEventListener('load', () => {
-    const storedText = getFromLocalStorage('storedText');
-    const storedMethod = getFromLocalStorage('encryptionMethod');
+    const storedText = getFromLocalStorage('storedText') || '';
+    const storedMethod = getFromLocalStorage('encryptionMethod') || '';
 
-    if (storedMethod) {
-        encryptionMethodSelect.value = storedMethod;
-    }
+    encryptionMethodSelect.value = storedMethod;
+    textInput.value = storedText;
 
-    if (storedText) {
-        textInput.value = storedText;
-        processText(textInput, encryptionMethodSelect, outputTextarea);
-    }
+    processText(textInput, encryptionMethodSelect, outputTextarea);
 });
 
 textInput.addEventListener('input', () => {
