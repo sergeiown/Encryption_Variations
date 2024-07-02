@@ -18,17 +18,10 @@ function processText() {
         writeToOutputFile(`${os.EOL}`);
         writeToOutputFile(`${text}${os.EOL}`);
 
-        const isEncoded = isXOREncoded(text);
+        const result = isXOREncoded(text) ? decodeText(text, encryptionKey) : encodeText(text, encryptionKey);
 
-        if (isEncoded) {
-            const decodedText = decodeText(text, encryptionKey);
-            console.log('Decrypted text:', `${decodedText}`);
-            writeToOutputFile(`${decodedText}${os.EOL}`);
-        } else {
-            const encodedText = encodeText(text, encryptionKey);
-            console.log('Encrypted text:', `${encodedText}`);
-            writeToOutputFile(`${encodedText}${os.EOL}`);
-        }
+        console.log(isXOREncoded(text) ? 'Decrypted text:' : 'Encrypted text:', result);
+        writeToOutputFile(`${result}${os.EOL}`);
 
         processText();
     });
