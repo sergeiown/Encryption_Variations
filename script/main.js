@@ -14,7 +14,7 @@ const copyButton = document.getElementById('copyButton');
 
 window.addEventListener('load', () => {
     const storedText = getFromLocalStorage('storedText') || '';
-    const storedMethod = getFromLocalStorage('encryptionMethod') || '';
+    const storedMethod = getFromLocalStorage('encryptionMethod') || 'base64';
 
     encryptionMethodSelect.value = storedMethod;
     textInput.value = storedText;
@@ -22,9 +22,18 @@ window.addEventListener('load', () => {
     processText(textInput, encryptionMethodSelect, outputTextarea);
 });
 
-textInput.addEventListener('input', () => {
-    processText(textInput, encryptionMethodSelect, outputTextarea);
-});
+textInput.addEventListener(
+    'input',
+    (() => {
+        let timeout;
+        return function () {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
+                processText(textInput, encryptionMethodSelect, outputTextarea);
+            }, 200);
+        };
+    })()
+);
 
 encryptionMethodSelect.addEventListener('change', () => {
     showTemporaryMessage('Encryption method is selected: ' + encryptionMethodSelect.value);
