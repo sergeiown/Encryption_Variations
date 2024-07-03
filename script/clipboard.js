@@ -3,21 +3,20 @@
 
 import { showTemporaryMessage } from './message.js';
 
-export function copyToClipboard(text) {
+export async function copyToClipboard(text) {
     if (!navigator.clipboard) {
         fallbackCopyTextToClipboard(text);
         return;
     }
 
-    navigator.clipboard
-        .writeText(text)
-        .then(() => {
-            const msg = text ? 'Result copied' : 'There is no text to copy';
-            showTemporaryMessage(msg);
-        })
-        .catch((err) => {
-            console.error('Failed to copy the result to clipboard', err);
-        });
+    try {
+        await navigator.clipboard.writeText(text);
+        const msg = text ? 'Result copied' : 'There is no text to copy';
+        showTemporaryMessage(msg);
+    } catch (err) {
+        console.error('Failed to copy the result to clipboard', err);
+        showTemporaryMessage('Failed to copy the result to clipboard');
+    }
 }
 
 function fallbackCopyTextToClipboard(text) {
@@ -26,6 +25,7 @@ function fallbackCopyTextToClipboard(text) {
 
     textArea.style.position = 'fixed';
     textArea.style.left = '-9999px';
+    textArea.setAttribute('aria-hidden', 'true');
 
     document.body.appendChild(textArea);
     textArea.focus();
@@ -33,10 +33,11 @@ function fallbackCopyTextToClipboard(text) {
 
     try {
         const successful = document.execCommand('copy');
-        const msg = successful ? 'Result copied' : 'There is no text to copy';
+        const msg = successful ? 'Result copied' : 'Failed to copy the result';
         showTemporaryMessage(msg);
     } catch (err) {
         console.error('Failed to copy the result to clipboard', err);
+        showTemporaryMessage('Failed to copy the result to clipboard');
     }
 
     document.body.removeChild(textArea);

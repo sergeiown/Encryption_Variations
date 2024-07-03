@@ -50,6 +50,10 @@ clearButton.addEventListener('click', () => {
     showTemporaryMessage(msg);
 });
 
-copyButton.addEventListener('click', () => {
-    copyToClipboard(outputTextarea.value);
+copyButton.addEventListener('click', async () => {
+    try {
+        await copyToClipboard(outputTextarea.value);
+    } catch (error) {
+        console.error('Error copying text to clipboard:', error);
+    }
 });
